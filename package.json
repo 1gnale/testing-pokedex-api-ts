@@ -1,0 +1,30 @@
+{
+  "name": "testing-pokedex-api-ts",
+  "version": "1.0.0",
+  "description": "Este repositorio pretende trasladar el contenido en [https://github.com/1gnale/testing-pokedex-api] a este usando TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "lint": "ts-standard \"src/**/*.ts\" --fix",
+    "dev": "ts-node-dev src/index.ts",
+    "tsc": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node build/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "ts-node-dev": "^2.0.0",
+    "ts-standard": "^12.0.2",
+    "typescript": "^5.4.5"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  }
+}
