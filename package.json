@@ -1,11 +1,11 @@
 {
   "name": "testing-pokedex-api-ts",
   "version": "1.0.0",
-  "description": "Este repositorio pretende trasladar el contenido en [https://github.com/1gnale/testing-pokedex-api] a este usando TypeScript",
-  "main": "index.js",
+  "description": "El repositorio pretende trasladar el contenido en [https://github.com/1gnale/testing-pokedex-api] a este usando TypeScript",
+  "main": "index.ts",
   "scripts": {
     "lint": "ts-standard \"src/**/*.ts\" --fix",
-    "dev": "ts-node-dev src/index.ts",
+    "dev": "ts-node-dev index.ts",
     "tsc": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon build/index.js"
