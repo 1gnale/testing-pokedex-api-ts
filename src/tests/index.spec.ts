@@ -20,7 +20,7 @@ describe('types route tests', () => {
 
 describe('pokemon route tests', () => {
   it('GET /pokemons should responds with a status 200 & an array of pokemons', async () => {
-    const response = await request(app).get('/pokemons')
+    const response: Response = await request(app).get('/pokemons')
     const pokemons: PokemonList[] = response.body
     expect(response.statusCode).toBe(200)
     expect(pokemons[0].name).toBe('bulbasaur')
@@ -28,7 +28,7 @@ describe('pokemon route tests', () => {
   })
 
   it('GET /pokemons/:id should responds with a status 200 & searched pokemon', async () => {
-    const response = await request(app).get('/pokemons/1')
+    const response: Response = await request(app).get('/pokemons/1')
     const pokemon: Pokemon = response.body
     expect(response.statusCode).toBe(200)
     expect(pokemon.id).toBe(1)
@@ -44,12 +44,12 @@ describe('pokemon route tests', () => {
   })
 
   it('GET /pokemons/:id should responds with a status 404 in error case', async () => {
-    const response = await request(app).get('/pokemons/1xd1')
+    const response: Response = await request(app).get('/pokemons/1xd1')
     expect(response.statusCode).toBe(404)
   })
 
   it('GET /pokemons?name=pikachu should responds with a status 200 & searched pokemon', async () => {
-    const response = await request(app).get('/pokemons?name=pikachu')
+    const response: Response = await request(app).get('/pokemons?name=pikachu')
     const pokemon: PokemonList[] = response.body
     expect(response.statusCode).toBe(200)
     expect(pokemon[0].name).toBe('pikachu')
@@ -57,7 +57,7 @@ describe('pokemon route tests', () => {
   })
 
   it('GET /pokemons?name=pid should responds with a status 200 & searched pokemons', async () => {
-    const response = await request(app).get('/pokemons?name=pid')
+    const response: Response = await request(app).get('/pokemons?name=pid')
     const pokemons: PokemonList[] = response.body
     expect(response.statusCode).toBe(200)
     expect(pokemons[0].name).toBe('pidgey')
@@ -71,7 +71,7 @@ describe('pokemon route tests', () => {
   })
 
   it('GET /pokemons?name=xdxdxdxd should responds with a status 404 in error case', async () => {
-    const response = await request(app).get('/pokemons?name=xdxdxdxd')
+    const response: Response = await request(app).get('/pokemons?name=xdxdxdxd')
     expect(response.statusCode).toBe(404)
   })
 })
