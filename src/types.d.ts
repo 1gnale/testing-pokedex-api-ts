@@ -17,3 +17,8 @@ export readonly type PokemonList = {
     name: string;
     id: number;
 }
+
+export readonly type TypesList = {
+    id: number;
+    name: Types;
+}
