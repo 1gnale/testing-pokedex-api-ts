@@ -1,12 +1,20 @@
-import request from 'supertest';
+import request, { Response } from 'supertest';
 import app from '../app';
-import { Pokemon, PokemonList } from '../types';
+import { Pokemon, PokemonList, TypesList, Types } from '../types';
 
-describe('basic route tests', () => {
-
+describe('types route tests', () => {
   it('/types should responds with a status 200', async () => {
-    const response = await request(app).get('/types');
+    const response: Response = await request(app).get('/types');
     expect(response.statusCode).toBe(200);
+  });
+  it('/types should responds with an array of types', async () => {
+    const response: Response = await request(app).get('/types');
+    const types: TypesList[] = response.body;
+    const typesNames: Types[] = types.map((type) => type.name);
+    expect(typesNames.includes('normal')).toBe(true);
+    expect(typesNames.includes('fighting')).toBe(true);
+    expect(typesNames.includes('flying')).toBe(true);
+    expect(typesNames.includes('poison')).toBe(true);
   });
 });
 
