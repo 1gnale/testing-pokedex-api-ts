@@ -1,5 +1,6 @@
 import request, { Response } from 'supertest'
 import app from '../app'
+import seq from '../db'
 import { Pokemon, PokemonList, TypesList, Types } from '../types'
 
 describe('types route tests', () => {
@@ -74,4 +75,8 @@ describe('pokemon route tests', () => {
     const response: Response = await request(app).get('/pokemons?name=xdxdxdxd')
     expect(response.statusCode).toBe(404)
   })
+})
+
+afterAll(async () => {
+  await seq.conn.close()
 })
