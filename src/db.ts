@@ -14,9 +14,9 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
   native: false
 })
 
-const basename = path.basename(__filename)
+const basename: string = path.basename(__filename)
 
-const modelDefiners: any[] = []
+const modelDefiners: Function[] = []
 
 fs.readdirSync(path.join(__dirname, '/models'))
   .filter((file: string) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
@@ -24,7 +24,7 @@ fs.readdirSync(path.join(__dirname, '/models'))
     modelDefiners.push(require(path.join(__dirname, '/models', file)))
   })
 
-modelDefiners.forEach(model => model(sequelize))
+modelDefiners.forEach((model: Function) => model(sequelize))
 
 const { pokemon, type } = sequelize.models
 
