@@ -63,7 +63,6 @@ const getPokemonsApi = async (): Promise<PokemonList[]> => {
             id: pokemon.url.split('/')[6]
         }
     });
-
     return apiPokemonsMapped;
 }
 
@@ -72,4 +71,11 @@ export const getAllPokemons = async (): Promise<(PokemonList | Pokemon)[]> => {
     const apiPokemons = await getPokemonsApi();
 
     return [...dbPokemons, ...apiPokemons];
+}
+
+export const getPokemonByName = async (name: string): Promise<PokemonList[]> => {
+    const allPokemons = await getAllPokemons();
+    const searchedPokemon = allPokemons.filter((pokemon) => pokemon.name.toLowerCase().includes(name.toLowerCase()));
+
+    return searchedPokemon;
 }
