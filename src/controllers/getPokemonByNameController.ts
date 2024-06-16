@@ -8,8 +8,10 @@ const getPokemonByNameController = async (req: Request, res: Response, next: Nex
         const pokemon = await getPokemonByName(name);
         if (pokemon.length === 0) {
             res.status(404).json({message: "Pokemon not found"});
+            return;
         }
-        res.status(200).json(pokemon);}
+        res.status(200).json(pokemon);
+    }
         else {
          next();
         }
