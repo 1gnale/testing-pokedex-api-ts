@@ -1,20 +1,20 @@
 import { Request, Response } from 'express';
 import { getAllTypes } from '../utils/index';
-import seq from '../db';
+import { TypeModel } from '../db';
 import { Types } from '../types';
 
-const { type } = seq.conn.models;
+
 
 const typesController = async (_req: Request, res: Response): Promise<void> => {
     try {
         const allTypes : {name: Types}[] = await getAllTypes();
         const promises = allTypes.map((e) => {
-            return type.findOrCreate({
+            return TypeModel.findOrCreate({
                 where: {name: e.name}
             });
         });
         await Promise.all(promises);
-        const allTypesDB = await type.findAll();
+        const allTypesDB = await TypeModel.findAll();
         res.status(200).json(allTypesDB);
         
     } catch (error: any) {
