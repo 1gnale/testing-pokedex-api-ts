@@ -25,7 +25,7 @@ describe('pokemon route tests', () => {
     const pokemons: PokemonList[] = response.body
     expect(response.statusCode).toBe(200)
     expect(pokemons[0].name).toBe('bulbasaur')
-    expect(pokemons[0].id).toBe(1)
+    expect(pokemons[0].id).toBe("1")
   })
 
   it('GET /pokemons/:id should responds with a status 200 & searched pokemon', async () => {
@@ -54,7 +54,7 @@ describe('pokemon route tests', () => {
     const pokemon: PokemonList[] = response.body
     expect(response.statusCode).toBe(200)
     expect(pokemon[0].name).toBe('pikachu')
-    expect(pokemon[0].id).toBe(25)
+    expect(pokemon[0].id).toBe("25")
   })
 
   it('GET /pokemons?name=pid should responds with a status 200 & searched pokemons', async () => {
@@ -62,13 +62,13 @@ describe('pokemon route tests', () => {
     const pokemons: PokemonList[] = response.body
     expect(response.statusCode).toBe(200)
     expect(pokemons[0].name).toBe('pidgey')
-    expect(pokemons[0].id).toBe(16)
+    expect(pokemons[0].id).toBe("16")
     expect(pokemons[1].name).toBe('pidgeotto')
-    expect(pokemons[1].id).toBe(17)
+    expect(pokemons[1].id).toBe("17")
     expect(pokemons[2].name).toBe('pidgeot')
-    expect(pokemons[2].id).toBe(18)
+    expect(pokemons[2].id).toBe("18")
     expect(pokemons[3].name).toBe('rapidash')
-    expect(pokemons[3].id).toBe(78)
+    expect(pokemons[3].id).toBe("78")
   })
 
   it('GET /pokemons?name=xdxdxdxd should responds with a status 404 in error case', async () => {
