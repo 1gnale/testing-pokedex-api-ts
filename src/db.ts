@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import { Sequelize } from 'sequelize'
-import fs from 'fs'
-import path from 'path'
+import Type from './models/Type'
+import Pokemon from './models/Pokemon'
 
 dotenv.config()
 
@@ -14,24 +14,14 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
   native: false
 })
 
-const basename: string = path.basename(__filename)
 
-const modelDefiners: Function[] = []
+export const TypeModel = Type(sequelize)
+export const PokemonModel = Pokemon(sequelize)
 
-fs.readdirSync(path.join(__dirname, '/models'))
-  .filter((file: string) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
-  .forEach((file: string) => {
-    modelDefiners.push(require(path.join(__dirname, '/models', file)))
-  })
 
-modelDefiners.forEach((model: Function) => model(sequelize))
-
-const { pokemon, type } = sequelize.models
-
-pokemon.belongsToMany(type, { through: 'pokeType' })
-type.belongsToMany(pokemon, { through: 'pokeType' })
+PokemonModel.belongsToMany(TypeModel, { through: 'pokeType' })
+TypeModel.belongsToMany(PokemonModel, { through: 'pokeType' })
 
 export default {
-  ...sequelize.models,
   conn: sequelize
 }

@@ -1,6 +1,8 @@
-const { DataTypes } = require('sequelize');
-module.exports = sequelize => {
-  sequelize.define('pokemon', {
+import { DataTypes, Model, Sequelize, ModelStatic } from 'sequelize';
+import {Pokemon} from '../types';
+
+export default (sequelize: Sequelize): ModelStatic<Model<Pokemon>> => {
+  return sequelize.define('pokemon', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
