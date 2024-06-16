@@ -63,7 +63,6 @@ const getPokemonsApi = async (): Promise<PokemonList[]> => {
             id: pokemon.url.split('/')[6]
         }
     });
-
     return apiPokemonsMapped;
 }
 
